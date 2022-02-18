@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./signup.css";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Signup = () => {
+  // set useHistory method
+  const history = useHistory();
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -19,7 +23,7 @@ const Signup = () => {
   // signup button
   const signupButton = () => {
     const { name, email, password, reEnterPassword } = user;
-    if (name && email && password && (password === reEnterPassword)) {
+    if (name && email && password && password === reEnterPassword) {
       axios.post("http://localhost/signup", user);
     } else {
       alert("Invalid Input");
@@ -61,7 +65,13 @@ const Signup = () => {
           Signup
         </div>
         <div>Or</div>
-        <div className="button">Login</div>
+        <div
+          className="button"
+          onClick={() => {
+            history.push("/login");
+          }}>
+          Login
+        </div>
       </div>
     </>
   );

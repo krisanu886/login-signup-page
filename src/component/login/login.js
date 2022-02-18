@@ -1,8 +1,12 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./login.css";
-import axios from 'axios';
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  // set useHistory method
+  const history = useHistory();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -15,9 +19,11 @@ const Login = () => {
     });
   };
   // Login button
-  const loginButton=()=>{
-    
-  }
+  const loginButton = () => {
+    axios
+      .post("http://localhost/login", user)
+      .then((res) => alert(res.data.message));
+  };
   return (
     <>
       <div className="main-div">
@@ -36,9 +42,17 @@ const Login = () => {
           onChange={inputChange}
           placeholder="Enter your password"
         />
-        <div className="button" onClick={loginButton}>Login</div>
+        <div className="button" onClick={loginButton}>
+          Login
+        </div>
         <div>Or</div>
-        <div>Signup</div>
+        <div
+          className="button"
+          onClick={() => {
+            history.push("/signup");
+          }}>
+          Signup
+        </div>
       </div>
     </>
   );
