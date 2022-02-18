@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import "./login.css";
+import axios from 'axios';
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -13,6 +14,10 @@ const Login = () => {
       [name]: value,
     });
   };
+  // Login button
+  const loginButton=()=>{
+    
+  }
   return (
     <>
       <div className="main-div">
@@ -31,7 +36,7 @@ const Login = () => {
           onChange={inputChange}
           placeholder="Enter your password"
         />
-        <div className="button">Login</div>
+        <div className="button" onClick={loginButton}>Login</div>
         <div>Or</div>
         <div>Signup</div>
       </div>
